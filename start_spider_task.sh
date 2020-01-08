@@ -3,7 +3,7 @@ spiders=(authorRedis videoRedis bangumiAndDonghua authorAutoAdd videoAutoAdd sit
 for var in ${spiders[@]} 
 do 
     ps -ef | grep $var | grep -v grep | cut -c 9-15 | xargs kill -9 
-    nohup scrapy crawl $var 1>$var.log 2>&1 &
+    nohup scrapy crawl $var -L INFO 1>$var.log 2>&1 &
 done 
 ps -ef | grep tag_adder | grep -v grep | cut -c 9-15 | xargs kill -9 
 nohup python ./biliob_requests/tag_adder.py 1>tag_adder.log 2>&1 &
